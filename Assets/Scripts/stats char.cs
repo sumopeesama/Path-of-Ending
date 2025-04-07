@@ -49,6 +49,7 @@ public class CharacterStats : MonoBehaviour
     private void Die()
     {
         Debug.Log(gameObject.name + " has died.");
-        // Add respawn or game over logic here
+        GameManager.Instance.LoseGame();
     }
+
 }
