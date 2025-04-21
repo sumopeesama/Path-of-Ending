@@ -315,7 +315,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 40
+  field of view: 60.000004
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -341,8 +341,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.19346389, y: 0, z: 0, w: 0.9811074}
-  m_LocalPosition: {x: 0, y: 4.1800003, z: -4.33}
+  m_LocalRotation: {x: 0.0001117025, y: 0.9843744, z: -0.17608838, w: 0.000019981739}
+  m_LocalPosition: {x: 0.00052412145, y: 6.882922, z: 8.579247}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1196,7 +1196,7 @@ Transform:
   m_GameObject: {fileID: 1180126502}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0001117025, y: 0.9843744, z: -0.17608838, w: 0.000019981739}
-  m_LocalPosition: {x: 0.00020964872, y: 5.583211, z: 9.059612}
+  m_LocalPosition: {x: 0.0005241215, y: 6.882922, z: 8.5792465}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1217,7 +1217,7 @@ MonoBehaviour:
   CameraDistance: 10
   DeadZoneDepth: 0
   Composition:
-    ScreenPosition: {x: 0, y: 0.08}
+    ScreenPosition: {x: 0, y: 0.2}
     DeadZone:
       Enabled: 0
       Size: {x: 0.2, y: 0.2}
@@ -1531,7 +1531,7 @@ GameObject:
   - component: {fileID: 1775715741}
   - component: {fileID: 1775715740}
   - component: {fileID: 1775715739}
-  - component: {fileID: 1775715738}
+  - component: {fileID: 1775715743}
   m_Layer: 0
   m_Name: Boss1
   m_TagString: Untagged
@@ -1539,20 +1539,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1775715738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1775715737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0058c7ee6e36a8b45bfc47dbd682cffd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 50
-  currentHealth: 0
 --- !u!64 &1775715739
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1643,6 +1629,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 90, z: 90}
+--- !u!114 &1775715743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775715737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 599c50cd101fd424dad99175d595b7ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 1000
+  currentHealth: 0
+  attackDamage: 25
+  attackSpeed: 1.5
+  movementSpeed: 3.5
+  attackCooldown: 2
+  skillCooldown: 8
+  enrageHealthThreshold: 0.3
+  enragedDamageMultiplier: 1.5
+  enragedSpeedMultiplier: 1.3
+  enragedAttackSpeedMultiplier: 1.4
+  isEnraged: 0
+  enragedColor: {r: 1, g: 0, b: 0, a: 1}
+  normalAttackIndicator: {fileID: 0}
+  leapAttackIndicator: {fileID: 0}
+  indicatorDisplayTime: 1.5
 --- !u!1 &1969948658
 GameObject:
   m_ObjectHideFlags: 0
@@ -2028,9 +2042,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  healthBar: {fileID: 0}
+  invulnerabilityTime: 0.5
   maxStamina: 50
   currentStamina: 0
+  staminaBar: {fileID: 0}
   staminaRegenRate: 5
+  staminaRegenDelay: 1
+  attackPower: 15
+  defense: 5
+  attackSpeed: 1
+  criticalChance: 0.05
+  criticalMultiplier: 1.5
+  showDamageNumbers: 1
+  damageTextPrefab: {fileID: 0}
+  healTextPrefab: {fileID: 0}
 --- !u!114 &6698530656519031017
 MonoBehaviour:
   m_ObjectHideFlags: 0

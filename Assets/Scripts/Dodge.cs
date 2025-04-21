@@ -1,14 +1,24 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerDodge : MonoBehaviour
 {
-    public float dodgeDistance = 5f; // Distance of the dodge
-    public float dodgeCooldown = 1f; // Cooldown between dodges
-    public int dodgeStaminaCost = 10; // Stamina cost per dodge
+    public float dodgeDistance = 5f;
+    public float dodgeCooldown = 1f;
+    public int dodgeStaminaCost = 10;
 
     private CharacterStats stats;
     private Rigidbody rb;
     private bool canDodge = true;
+
+    private PlayerInput playerInput;
+    private InputAction dodgeAction;
+
+    private void Awake()
+    {
+        playerInput = GetComponent<PlayerInput>();
+        dodgeAction = playerInput.actions["Dodge"]; // Make sure the action is named "Dodge" in the InputActions
+    }
 
     private void Start()
     {
@@ -16,9 +26,21 @@ public class PlayerDodge : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && canDodge && stats.currentStamina >= dodgeStaminaCost)
+        dodgeAction.performed += OnDodge;
+        dodgeAction.Enable();
+    }
+
+    private void OnDisable()
+    {
+        dodgeAction.performed -= OnDodge;
+        dodgeAction.Disable();
+    }
+
+    private void OnDodge(InputAction.CallbackContext context)
+    {
+        if (canDodge && stats.currentStamina >= dodgeStaminaCost)
         {
             Dodge();
         }
@@ -29,11 +51,9 @@ public class PlayerDodge : MonoBehaviour
         stats.UseStamina(dodgeStaminaCost);
         canDodge = false;
 
-        // Apply force in the player's forward direction
         Vector3 dodgeDirection = transform.forward * dodgeDistance;
         rb.AddForce(dodgeDirection, ForceMode.Impulse);
 
-        // Start cooldown
         Invoke(nameof(ResetDodge), dodgeCooldown);
     }
 
